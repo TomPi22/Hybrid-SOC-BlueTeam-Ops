@@ -9,7 +9,7 @@ A production-grade portfolio demonstrating active threat monitoring, log correla
 ## 🗺️ Strategic Roadmap & SOC Competency Index
 
 📁 **Phase 1: Log Analysis & Event Correlation (Windows, Linux, Firewall)**
-* [Lab 1: Forensic Log Analysis - Investigating Linux Hardening Failures & SSH Brute Force](#)(#Lab 1)
+* [Lab 1: Forensic Log Analysis - Investigating Linux Hardening Failures & SSH Brute Force](#Lab 1)
 * [Lab 2: Windows Event ID Auditing - Tracking Privilege Escalation and Remote Executions](#)
 
 📁 **Phase 2: SIEM Operations & Advanced Threat Hunting (Microsoft Sentinel & KQL)**
@@ -35,7 +35,7 @@ A production-grade portfolio demonstrating active threat monitoring, log correla
 * **Frameworks & Framework Mapping:** MITRE ATT&CK, NIST Computer Security Incident Handling Guide (SP 800-61 Rev. 2), GDPR Art. 32 Compliance.
 
 
-# Lab 1
+## Lab 1
 ## Lab_01_Forensic_Log_Analysis
 
 ## Lab 1: Forensic Log Analysis - Linux SSH Brute Force Investigation
