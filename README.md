@@ -57,7 +57,7 @@ In Debian-based environments, authentication events are written to `/var/log/aut
 **Command Line Forensics:**
 To filter the noise and extract the exact threat actor's IP address and the frequency of the attack, the following parsing pipeline was executed:
 
-```bash
+
 sudo grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr
 
 Below is the output of the forensic investigation, clearly identifying the attacker's origin IP and the volume of unauthorized access attempts.
