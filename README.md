@@ -37,7 +37,7 @@ A production-grade portfolio demonstrating active threat monitoring, log correla
 
 ## Lab_01_Forensic_Log_Analysis
 
-## Lab 1: Forensic Log Analysis - Linux SSH Brute Force Investigation
+## Lab1: Forensic Log Analysis - Linux SSH Brute Force Investigation
 
 **Objective:** Simulate an adversary attempting to compromise a Linux server via SSH brute force, capture the resulting telemetries, and perform forensic log parsing to extract Indicators of Compromise (IoCs) for incident containment.
 
