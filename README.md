@@ -33,3 +33,36 @@ A production-grade portfolio demonstrating active threat monitoring, log correla
 * **EDR / XDR Platform:** Wazuh (Open-Source EDR), Microsoft Defender for Cloud / Endpoint.
 * **Network & Ingestion Controls:** Syslog, Azure Activity Logs, Host-Based Firewalls (UFW/Windows Firewall).
 * **Frameworks & Framework Mapping:** MITRE ATT&CK, NIST Computer Security Incident Handling Guide (SP 800-61 Rev. 2), GDPR Art. 32 Compliance.
+
+
+Lab_01_Forensic_Log_Analysis
+
+## Lab 1: Forensic Log Analysis - Linux SSH Brute Force Investigation
+
+**Objective:** Simulate an adversary attempting to compromise a Linux server via SSH brute force, capture the resulting telemetries, and perform forensic log parsing to extract Indicators of Compromise (IoCs) for incident containment.
+
+**SOC Analyst Level:** L1 / L2
+**Framework:** MITRE ATT&CK
+* Tactic: Credential Access (TA0006)
+* Technique: Brute Force: Password Guessing (T1110.001)
+
+### 1. Incident Simulation (Red Team Operation)
+To generate actionable telemetries, a targeted brute-force attack was simulated against the Linux Operations Server (Ubuntu). Multiple authentication attempts were executed using common default administrative usernames (`admin`, `root`, `hacker`) over TCP Port 22 (SSH).
+
+### 2. Threat Triage & Log Parsing (Blue Team Operation)
+As a SOC Analyst, the primary objective is to identify the scope of the attack by analyzing system security logs. 
+In Debian-based environments, authentication events are written to `/var/log/auth.log`.
+
+**Command Line Forensics:**
+To filter the noise and extract the exact threat actor's IP address and the frequency of the attack, the following parsing pipeline was executed:
+
+```bash
+sudo grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr
+
+Below is the output of the forensic investigation, clearly identifying the attacker's origin IP and the volume of unauthorized access attempts.
+<img width="1422" height="627" alt="image" src="https://github.com/user-attachments/assets/711ca26b-f5f1-4ccf-826b-24c9eff09c04" />
+
+
+Upon extracting the IoC (Threat Actor IP), the immediate containment action involves blacklisting the IP at the host-based firewall level to disrupt the cyber kill chain.
+<img width="542" height="62" alt="image" src="https://github.com/user-attachments/assets/cc85adb6-352b-45b7-b593-c729a2085de5" />
+
