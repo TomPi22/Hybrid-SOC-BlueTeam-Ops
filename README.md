@@ -62,6 +62,7 @@ To filter the noise and extract the exact threat actor's IP address and the freq
 <img width="1422" height="627" alt="image" src="https://github.com/user-attachments/assets/711ca26b-f5f1-4ccf-826b-24c9eff09c04" />
 
 <br>
+<br>
 
 > *Upon extracting the IoC (Threat Actor IP), the immediate containment action involves blacklisting the IP at the host-based firewall level to disrupt the cyber kill chain.*
 <img width="542" height="62" alt="image" src="https://github.com/user-attachments/assets/cc85adb6-352b-45b7-b593-c729a2085de5" />
