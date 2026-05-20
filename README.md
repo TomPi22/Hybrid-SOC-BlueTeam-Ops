@@ -60,6 +60,7 @@ To filter the noise and extract the exact threat actor's IP address and the freq
 
 sudo grep "Failed password" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr
 
+
 Below is the output of the forensic investigation, clearly identifying the attacker's origin IP and the volume of unauthorized access attempts.
 <img width="1422" height="627" alt="image" src="https://github.com/user-attachments/assets/711ca26b-f5f1-4ccf-826b-24c9eff09c04" />
 
