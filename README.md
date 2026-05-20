@@ -34,6 +34,7 @@ A production-grade portfolio demonstrating active threat monitoring, log correla
 * **Network & Ingestion Controls:** Syslog, Azure Activity Logs, Host-Based Firewalls (UFW/Windows Firewall).
 * **Frameworks & Framework Mapping:** MITRE ATT&CK, NIST Computer Security Incident Handling Guide (SP 800-61 Rev. 2), GDPR Art. 32 Compliance.
 
+---
 
 ## Lab_01_Forensic_Log_Analysis
 
