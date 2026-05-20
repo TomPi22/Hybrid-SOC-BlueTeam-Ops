@@ -36,7 +36,7 @@ A production-grade portfolio demonstrating active threat monitoring, log correla
 
 ---
 
-## Lab_01_Forensic_Log_Analysis
+## Forensic_Log_Analysis
 
 ## Lab1: Forensic Log Analysis - Linux SSH Brute Force Investigation
 
