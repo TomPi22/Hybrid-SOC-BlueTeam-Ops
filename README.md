@@ -10,7 +10,7 @@ A production-grade portfolio demonstrating active threat monitoring, log correla
 
 📁 **Phase 1: Log Analysis & Event Correlation (Windows, Linux, Firewall)**
 * [Lab 1: Forensic Log Analysis - Investigating Linux Hardening Failures & SSH Brute Force](#Lab1)
-* [Lab 2: Windows Event ID Auditing - Tracking Privilege Escalation and Remote Executions](#)
+* [Lab 2: Windows Event ID Auditing - Tracking Privilege Escalation and Remote Executions](#Lab2)
 
 📁 **Phase 2: SIEM Operations & Advanced Threat Hunting (Microsoft Sentinel & KQL)**
 * [Lab 3: Modern Threat Hunting - Detecting Cloud Phishing & Lateral Movement via KQL](#)
@@ -68,7 +68,7 @@ To filter the noise and extract the exact threat actor's IP address and the freq
 <br>
 <br>
 
-## 🛡️ Lab 2: Windows Event ID Auditing & Privilege Escalation Detection
+## 🛡️ Lab2: Windows Event ID Auditing & Privilege Escalation Detection
 
 **Objective:** Simulate an adversary creating a persistent backdoor account and escalating privileges on a Windows host, followed by forensic auditing of Windows Security Event Logs to detect the malicious activity.
 
