@@ -35,7 +35,7 @@ A production-grade portfolio demonstrating active threat monitoring, log correla
 * **Frameworks & Framework Mapping:** MITRE ATT&CK, NIST Computer Security Incident Handling Guide (SP 800-61 Rev. 2), GDPR Art. 32 Compliance.
 
 ---
-#Lab1
+# Lab1
 ## Lab1: Forensic Log Analysis - Linux SSH Brute Force Investigation
 
 **Objective:** Simulate an adversary attempting to compromise a Linux server via SSH brute force, capture the resulting telemetries, and perform forensic log parsing to extract Indicators of Compromise (IoCs) for incident containment.
@@ -67,7 +67,7 @@ To filter the noise and extract the exact threat actor's IP address and the freq
 
 <br>
 <br>
-#Lab2
+# Lab2
 ## 🛡️ Lab2: Windows Event ID Auditing & Privilege Escalation Detection
 
 **Objective:** Simulate an adversary creating a persistent backdoor account and escalating privileges on a Windows host, followed by forensic auditing of Windows Security Event Logs to detect the malicious activity.
