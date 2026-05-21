@@ -67,6 +67,7 @@ To filter the noise and extract the exact threat actor's IP address and the freq
 
 <br>
 <br>
+
 # Lab2
 ## 🛡️ Windows Event ID Auditing & Privilege Escalation Detection
 
