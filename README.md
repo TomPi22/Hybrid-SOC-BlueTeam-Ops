@@ -36,8 +36,6 @@ A production-grade portfolio demonstrating active threat monitoring, log correla
 
 ---
 
-## Forensic_Log_Analysis
-
 ## Lab1: Forensic Log Analysis - Linux SSH Brute Force Investigation
 
 **Objective:** Simulate an adversary attempting to compromise a Linux server via SSH brute force, capture the resulting telemetries, and perform forensic log parsing to extract Indicators of Compromise (IoCs) for incident containment.
@@ -67,3 +65,28 @@ To filter the noise and extract the exact threat actor's IP address and the freq
 > *Upon extracting the IoC (Threat Actor IP), the immediate containment action involves blacklisting the IP at the host-based firewall level to disrupt the cyber kill chain.*
 <img width="542" height="62" alt="image" src="https://github.com/user-attachments/assets/cc85adb6-352b-45b7-b593-c729a2085de5" />
 
+<br>
+<br>
+
+## 🛡️ Lab 2: Windows Event ID Auditing & Privilege Escalation Detection
+
+**Objective:** Simulate an adversary creating a persistent backdoor account and escalating privileges on a Windows host, followed by forensic auditing of Windows Security Event Logs to detect the malicious activity.
+
+**Scenario:** A sophisticated threat actor gained initial access to a corporate Windows endpoint and attempted to establish persistence by creating a hidden local administrator account. The SOC must identify this privilege escalation and track the attacker's footprint using native Windows Event telemetry.
+
+### 1. The Attacker's Perspective (Persistence Execution)
+To generate actionable telemetry, a simulated attack was executed via PowerShell. The adversary created a hidden local user (`sysupdate`), escalated its privileges by adding it to the `Administrators` group for full system control, and subsequently deleted the account to wipe visible traces.
+<br>
+<img width="826" height="297" alt="image" src="https://github.com/user-attachments/assets/953651ef-9c5d-44a1-ae6d-3771679c19e2" />
+
+
+### 2. The Analyst's Perspective (Telemetry & Tracking)
+Operating within the SOC, the analyst must identify unauthorized account modifications by querying the Windows Security Event Log. The investigation focused on filtering critical security events, specifically tracking unauthorized additions to highly privileged groups.
+<br>
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0adf203d-c840-449a-845e-df1c4a1944ea" />
+
+
+### 3. Forensic Evidence (Event ID 4720 & 4732)
+Deep diving into the filtered logs reveals the exact forensic timeline. The presence of **Event ID 4720** (A user account was created) explicitly confirms the creation of the `sysupdate` account. Furthermore, the logs captured the exact timestamp and identified that the compromised primary account (`ELTON-DELL\Elton`) was utilized to execute the unauthorized actions, providing a clear path for incident containment.
+
+**Skills Applied:** Windows Security Event Auditing, PowerShell Forensics, Threat Hunting, Incident Response, Local IAM (Identity and Access Management).
