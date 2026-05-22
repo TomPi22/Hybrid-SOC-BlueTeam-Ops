@@ -14,17 +14,17 @@ A production-grade portfolio demonstrating active threat monitoring, log correla
 * [Lab 3: Hybrid Cloud Onboarding & Identity Provisioning (Azure Arc)](#Lab3)
   
 📁 **Phase 2: SIEM Operations & Advanced Threat Hunting (Microsoft Sentinel & KQL)**
-* [Lab 3: Modern Threat Hunting - Detecting Cloud Phishing & Lateral Movement via KQL](#)
-* [Lab 4: MITRE ATT&CK Mapping - Developing Custom Analytics Rules for Ransomware Detection](#)
+* [Lab 4: Modern Threat Hunting - Detecting Cloud Phishing & Lateral Movement via KQL](#Lab4)
+* [Lab 5: MITRE ATT&CK Mapping - Developing Custom Analytics Rules for Ransomware Detection](#)
 
 📁 **Phase 3: Endpoint Defense & XDR Integration (Wazuh / Defender for Endpoint)**
-* [Lab 5: Open-Source EDR Deployment - Deploying Wazuh to Monitor Host-Based Indicators of Compromise (IoCs)](#)
+* [Lab 7: Open-Source EDR Deployment - Deploying Wazuh to Monitor Host-Based Indicators of Compromise (IoCs)](#)
 
 📁 **Phase 4: SOAR Automation & Incident Response Playbooks**
-* [Lab 6: Automated Contained & Triage - Orchestrating Logic Apps for Real-Time Threat Mitigation](#)
+* [Lab 8: Automated Contained & Triage - Orchestrating Logic Apps for Real-Time Threat Mitigation](#)
 
 📁 **Phase 5: Operational Reporting & Security Metrics (SOC Governance)**
-* [Lab 7: Cyber Threat Intelligence (CTI) & Executive Incident Reporting for Critical Outages](#)
+* [Lab 9: Cyber Threat Intelligence (CTI) & Executive Incident Reporting for Critical Outages](#)
 
 ---
 
@@ -118,3 +118,39 @@ Operating from the Azure Portal, the SOC can now verify that the hybrid bridge i
 
 
 **Skills Applied:** Hybrid Cloud Architecture, Azure Arc Integration, Managed Service Identity (MSI), Device Code Authentication, Cloud Security Posture Management (CSPM) Preparation.
+
+<br>
+<br>
+
+## 🛡️ Lab 4: Cloud SIEM Ingestion & Advanced Threat Hunting (KQL)
+
+**Objective:** Ingest on-premises security telemetries into a cloud-native SIEM (Microsoft Sentinel) utilizing the Azure Monitor Agent (AMA) and execute advanced KQL (Kusto Query Language) threat hunting to detect credential compromise attempts.
+
+**Scenario:** Following the successful Azure Arc hybrid onboarding, the SOC requires centralized, real-time visibility into the on-premises Linux infrastructure. The objective is to establish a telemetry pipeline and proactively hunt for the SSH brute-force attack simulated in Lab 1 directly from the cloud console.
+
+### 1. The Engineer's Perspective (Data Collection Rule & AMA)
+To securely route telemetry to the SIEM, a Data Collection Rule (DCR) was engineered within Azure. This policy explicitly targeted the hybrid Linux server (`Pielt`), instructing the silent deployment of the Azure Monitor Agent (AMA). To optimize SIEM ingestion costs and adhere to FinOps best practices, the DCR was strictly scoped to collect only security-relevant Syslog facilities (`auth` and `authpriv` at `LOG_INFO` level), dropping unnecessary system noise.
+
+<br>
+
+<img width="1070" height="932" alt="image" src="https://github.com/user-attachments/assets/b8f8610c-2b46-4b36-b3b0-a015e09651cc" />
+
+<br>
+
+### 2. The Analyst's Perspective (KQL Threat Hunting)
+With the telemetry pipeline active, a simulated SSH brute-force attack was executed locally. Operating from the Microsoft Sentinel workspace, a custom KQL query was authored to hunt for Indicators of Compromise (IoCs) within the ingested raw logs in real-time.
+
+```kusto
+Syslog
+| where ProcessName == "sshd"
+| where SyslogMessage contains "Failed password"
+| project TimeGenerated, Computer, ProcessName, SyslogMessage
+| sort by TimeGenerated desc
+```
+
+<br>
+
+### 3. Forensic Evidence (Cloud Telemetry Validation)
+The KQL query successfully parsed the Syslog data, directly linking the on-premises attack to the cloud SIEM. The results explicitly identified the exact timestamps, the targeted machine (Pielt), the process (sshd), and the malicious source IP (10.0.2.2) attempting to use the hacker credential. This confirms the hybrid bridge is fully operational and the SOC has complete visibility over the local perimeter.
+
+**kills Applied:** SIEM Engineering, Microsoft Sentinel, Kusto Query Language (KQL), Azure Monitor Agent (AMA), Data Collection Rules (DCR), FinOps (Log Filtering), Proactive Threat Hunting.
