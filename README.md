@@ -154,4 +154,4 @@ Syslog
 ### 3. Forensic Evidence (Cloud Telemetry Validation)
 The KQL query successfully parsed the Syslog data, directly linking the on-premises attack to the cloud SIEM. The results explicitly identified the exact timestamps, the targeted machine (Pielt), the process (sshd), and the malicious source IP (10.0.2.2) attempting to use the hacker credential. This confirms the hybrid bridge is fully operational and the SOC has complete visibility over the local perimeter.
 
-**kills Applied:** SIEM Engineering, Microsoft Sentinel, Kusto Query Language (KQL), Azure Monitor Agent (AMA), Data Collection Rules (DCR), FinOps (Log Filtering), Proactive Threat Hunting.
+**Skills Applied:** SIEM Engineering, Microsoft Sentinel, Kusto Query Language (KQL), Azure Monitor Agent (AMA), Data Collection Rules (DCR), FinOps (Log Filtering), Proactive Threat Hunting.
