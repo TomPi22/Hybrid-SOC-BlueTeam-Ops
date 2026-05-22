@@ -122,6 +122,7 @@ Operating from the Azure Portal, the SOC can now verify that the hybrid bridge i
 <br>
 <br>
 
+# Lab4
 ## 🛡️ Lab 4: Cloud SIEM Ingestion & Advanced Threat Hunting (KQL)
 
 **Objective:** Ingest on-premises security telemetries into a cloud-native SIEM (Microsoft Sentinel) utilizing the Azure Monitor Agent (AMA) and execute advanced KQL (Kusto Query Language) threat hunting to detect credential compromise attempts.
