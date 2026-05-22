@@ -11,7 +11,8 @@ A production-grade portfolio demonstrating active threat monitoring, log correla
 📁 **Phase 1: Log Analysis & Event Correlation (Windows, Linux, Firewall)**
 * [Lab 1: Forensic Log Analysis - Investigating Linux Hardening Failures & SSH Brute Force](#Lab1)
 * [Lab 2: Windows Event ID Auditing - Tracking Privilege Escalation and Remote Executions](#Lab2)
-
+* [Lab 3: Hybrid Cloud Onboarding & Identity Provisioning (Azure Arc)](#Lab3)
+  
 📁 **Phase 2: SIEM Operations & Advanced Threat Hunting (Microsoft Sentinel & KQL)**
 * [Lab 3: Modern Threat Hunting - Detecting Cloud Phishing & Lateral Movement via KQL](#)
 * [Lab 4: MITRE ATT&CK Mapping - Developing Custom Analytics Rules for Ransomware Detection](#)
@@ -91,3 +92,29 @@ Operating within the SOC, the analyst must identify unauthorized account modific
 Deep diving into the filtered logs reveals the exact forensic timeline. The presence of **Event ID 4720** (A user account was created) explicitly confirms the creation of the `sysupdate` account. Furthermore, the logs captured the exact timestamp and identified that the compromised primary account (`ELTON-DELL\Elton`) was utilized to execute the unauthorized actions, providing a clear path for incident containment.
 
 **Skills Applied:** Windows Security Event Auditing, PowerShell Forensics, Threat Hunting, Incident Response, Local IAM (Identity and Access Management).
+
+<br>
+<br>
+
+# Lab3
+## 🛡️ Lab 3: Hybrid Cloud Onboarding & Identity Provisioning (Azure Arc)
+
+**Objective:** Project an on-premises Linux server into the Azure control plane using Azure Arc, establishing a secure, identity-driven management bridge for centralized SIEM ingestion and SOC visibility.
+
+**Scenario:** To achieve full observability across the hybrid infrastructure, the SOC requires telemetry from local endpoints to be ingested into Microsoft Sentinel. Before log ingestion can occur, the physical/virtual on-premises Linux server must be authenticated and recognized as a native Azure resource.
+
+### 1. The Engineer's Perspective (Agent Deployment & Authentication)
+The Azure Connected Machine agent (`azcmagent`) was deployed on the local Ubuntu Operations Server. To securely bind the on-premises machine to the Azure tenant without hardcoding credentials, a device code authentication flow was utilized. The terminal successfully retrieved the Managed Service Identity (MSI) certificate, cryptographically proving the machine's identity to the cloud control plane.
+
+<img width="1109" height="644" alt="image" src="https://github.com/user-attachments/assets/e934e58a-8574-4d63-bfd4-d5dffe8a7321" />
+<br>
+<img width="727" height="549" alt="image" src="https://github.com/user-attachments/assets/d566f1c9-0946-4f7a-83dc-f25da6e5bb97" />
+
+
+### 2. The Analyst's Perspective (Cloud Validation)
+Operating from the Azure Portal, the SOC can now verify that the hybrid bridge is active. The Linux server successfully reports its status as "Connected" within the designated Resource Group (`RG-Hybrid-SOC`). The machine is now fully manageable via Azure Resource Manager (ARM), paving the way for the deployment of the Azure Monitor Agent (AMA) and direct Microsoft Sentinel integration.
+<br>
+<img width="1915" height="842" alt="image" src="https://github.com/user-attachments/assets/481291dc-6bd6-4960-ab03-90fe348a2230" />
+
+
+**Skills Applied:** Hybrid Cloud Architecture, Azure Arc Integration, Managed Service Identity (MSI), Device Code Authentication, Cloud Security Posture Management (CSPM) Preparation.
