@@ -15,7 +15,7 @@ A production-grade portfolio demonstrating active threat monitoring, log correla
   
 📁 **Phase 2: SIEM Operations & Advanced Threat Hunting (Microsoft Sentinel & KQL)**
 * [Lab 4: Modern Threat Hunting - Detecting Cloud Phishing & Lateral Movement via KQL](#Lab4)
-* [Lab 5: MITRE ATT&CK Mapping - Developing Custom Analytics Rules for Ransomware Detection](#)
+* [Lab 5: MITRE ATT&CK Mapping - Developing Custom Analytics Rules for Ransomware Detection](#Lab5)
 
 📁 **Phase 3: Endpoint Defense & XDR Integration (Wazuh / Defender for Endpoint)**
 * [Lab 7: Open-Source EDR Deployment - Deploying Wazuh to Monitor Host-Based Indicators of Compromise (IoCs)](#)
@@ -36,6 +36,9 @@ A production-grade portfolio demonstrating active threat monitoring, log correla
 * **Frameworks & Framework Mapping:** MITRE ATT&CK, NIST Computer Security Incident Handling Guide (SP 800-61 Rev. 2), GDPR Art. 32 Compliance.
 
 ---
+
+<br>
+
 # Lab1
 ## Forensic Log Analysis - Linux SSH Brute Force Investigation
 
@@ -155,3 +158,29 @@ Syslog
 The KQL query successfully parsed the Syslog data, directly linking the on-premises attack to the cloud SIEM. The results explicitly identified the exact timestamps, the targeted machine (Pielt), the process (sshd), and the malicious source IP (10.0.2.2) attempting to use the hacker credential. This confirms the hybrid bridge is fully operational and the SOC has complete visibility over the local perimeter.
 
 **Skills Applied:** SIEM Engineering, Microsoft Sentinel, Kusto Query Language (KQL), Azure Monitor Agent (AMA), Data Collection Rules (DCR), FinOps (Log Filtering), Proactive Threat Hunting.
+
+<br>
+<br>
+
+# Lab5
+## 🛡️ Lab 5: SecOps Automation & Incident Response (Analytics Rules)
+
+**Objective:** Automate the detection of credential access attempts by translating proactive KQL threat hunting queries into active SIEM Analytics Rules, generating high-fidelity SOC incidents.
+
+**Scenario:** Manual threat hunting is insufficient for 24/7 Operations. To minimize Mean Time to Detect (MTTD), the SOC requires an automated alerting mechanism that monitors hybrid Linux infrastructure for SSH brute-force attacks and generates actionable incidents within the unified SecOps platform.
+
+### 1. The Engineer's Perspective (Detection Engineering)
+A custom Analytics Rule was engineered within Microsoft Sentinel. The previously utilized KQL query was embedded as the core detection logic. To account for cloud ingestion latency inherent in hybrid environments, the scheduling parameters were strategically tuned (executing every 5 minutes with a 1-hour lookback). The rule was explicitly mapped to the MITRE ATT&CK framework (T1110.001: Password Guessing) and configured with Entity Mapping (HostName) to ensure proper graph correlation.
+
+### 2. The Attacker's Perspective (Triggering the Trap)
+A rapid succession of unauthorized SSH login attempts was executed locally against the Operations Server. The simulated threat actor attempted to brute-force the `hacker` credential, unknowingly triggering the deployed telemetry pipeline.
+
+### 3. The Analyst's Perspective (Incident Triage)
+The automated detection engine successfully intercepted the ingested telemetry and raised a High-Severity incident within the Microsoft Defender unified portal. The SOC analyst is immediately presented with a correlated alert ("SSH Brute Force Detection"), prioritized and enriched with the exact compromised endpoint (`Pielt`), allowing for immediate containment actions.
+
+<br>
+
+<img width="1916" height="1036" alt="image" src="https://github.com/user-attachments/assets/f1ff9a12-a417-48fc-8aae-1b4b13302918" />
+
+
+**Skills Applied:** Detection Engineering, SecOps Automation, Microsoft Defender XDR, Incident Generation, MITRE ATT&CK Mapping (T1110.001), Ingestion Latency Mitigation.
