@@ -18,13 +18,13 @@ A production-grade portfolio demonstrating active threat monitoring, log correla
 * [Lab 5: MITRE ATT&CK Mapping - Developing Custom Analytics Rules for Ransomware Detection](#Lab5)
 
 📁 **Phase 3: Endpoint Defense & XDR Integration (Wazuh / Defender for Endpoint)**
-* [Lab 7: Open-Source EDR Deployment - Deploying Wazuh to Monitor Host-Based Indicators of Compromise (IoCs)](#)
+* [Lab 6: Open-Source EDR Deployment - Deploying Wazuh to Monitor Host-Based Indicators of Compromise (IoCs)](#)
 
 📁 **Phase 4: SOAR Automation & Incident Response Playbooks**
-* [Lab 8: Automated Contained & Triage - Orchestrating Logic Apps for Real-Time Threat Mitigation](#)
+* [Lab 7: Automated Contained & Triage - Orchestrating Logic Apps for Real-Time Threat Mitigation](#)
 
 📁 **Phase 5: Operational Reporting & Security Metrics (SOC Governance)**
-* [Lab 9: Cyber Threat Intelligence (CTI) & Executive Incident Reporting for Critical Outages](#)
+* [Lab 8: Cyber Threat Intelligence (CTI) & Executive Incident Reporting for Critical Outages](#)
 
 ---
 
