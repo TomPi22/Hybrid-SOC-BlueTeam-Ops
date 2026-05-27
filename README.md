@@ -224,7 +224,7 @@ The initial scan resulted in a 29% compliance score, immediately highlighting cr
 
 <br>
 
-<img width="1915" height="1032" alt="image" src="https://github.com/user-attachments/assets/4138debb-9832-486a-8047-bf538b0df93a" />
+<img width="1383" height="870" alt="image" src="https://github.com/user-attachments/assets/d7e5975c-4697-4cf5-a32c-781ff06902f6" />
 
 *Caption: Granular log analysis revealing the specific registry key and policy misconfigurations (e.g., Password Complexity) that require immediate incident response and hardening.*
 
