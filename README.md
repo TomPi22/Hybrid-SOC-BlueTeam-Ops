@@ -15,28 +15,30 @@ A production-grade portfolio demonstrating active threat monitoring, log correla
   
 📁 **Phase 2: SIEM Operations & Advanced Threat Hunting (Microsoft Sentinel & KQL)**
 * [Lab 4: Modern Threat Hunting - Detecting Cloud Phishing & Lateral Movement via KQL](#Lab4)
-* [Lab 5: MITRE ATT&CK Mapping - Developing Custom Analytics Rules for Ransomware Detection](#Lab5)
+* [Lab 5: SecOps Automation - Developing Custom Analytics Rules for SSH Brute Force](#Lab5)
 
-📁 **Phase 3: Endpoint Defense & XDR Integration (Wazuh / Defender for Endpoint)**
-* [Lab 6: Open-Source EDR Deployment - Deploying Wazuh to Monitor Host-Based Indicators of Compromise (IoCs)](#)
+📁 **Phase 3: Endpoint Defense, Vulnerability Management & XDR (Wazuh / Elastic)**
+* [Lab 6: Open-Source EDR Deployment & CIS Hardening - Proactive Vulnerability Management](#Lab6)
+* [Lab 7: Malware & Ransomware Defense - Configuring File Integrity Monitoring (FIM) & Threat Hunting](#Lab7)
 
-📁 **Phase 4: SOAR Automation & Incident Response Playbooks**
-* [Lab 7: Automated Contained & Triage - Orchestrating Logic Apps for Real-Time Threat Mitigation](#)
+📁 **Phase 4: Network Security & Web Exploitation Defense**
+* [Lab 8: Detecting Web Exploitation & SQL Injection via Wazuh and SIEM Correlation](#Lab8)
 
-📁 **Phase 5: Operational Reporting & Security Metrics (SOC Governance)**
-* [Lab 8: Cyber Threat Intelligence (CTI) & Executive Incident Reporting for Critical Outages](#)
+📁 **Phase 5: SOAR Automation & Incident Response Playbooks**
+* [Lab 9: Active Response & Containment - Automating Endpoint Isolation via Custom Scripts](#Lab9)
+* [Lab 10: SOC Governance - Tuning Dashboards, KPIs, and Executive Incident Reporting](#Lab10)
 
 ---
 
 ## 🛠️ Tech Stack & SOC Tools Blueprint
 
-* **SIEM / Data Analytics:** Microsoft Sentinel, Log Analytics Workspaces, KQL (Kusto Query Language).
-* **EDR / XDR Platform:** Wazuh (Open-Source EDR), Microsoft Defender for Cloud / Endpoint.
-* **Network & Ingestion Controls:** Syslog, Azure Activity Logs, Host-Based Firewalls (UFW/Windows Firewall).
-* **Frameworks & Framework Mapping:** MITRE ATT&CK, NIST Computer Security Incident Handling Guide (SP 800-61 Rev. 2), GDPR Art. 32 Compliance.
+* **SIEM / Data Analytics:** Microsoft Sentinel, Log Analytics Workspaces, KQL, Elastic Stack.
+* **EDR / XDR Platform:** Wazuh (Open-Source EDR), Microsoft Defender for Endpoint.
+* **Network & Ingestion Controls:** Syslog, Azure Activity Logs, Host-Based Firewalls.
+* **Frameworks & Framework Mapping:** MITRE ATT&CK, NIST Incident Handling (SP 800-61), CIS Benchmarks.
+* **Security Domains:** Vulnerability Analysis, Hardening, Web Exploitation, SOAR Automation, Phishing/Malware Detection.
 
----
-
+<br>
 <br>
 
 # Lab1
@@ -163,7 +165,7 @@ The KQL query successfully parsed the Syslog data, directly linking the on-premi
 <br>
 
 # Lab5
-## 🛡️ Lab 5: SecOps Automation & Incident Response (Analytics Rules)
+## 🛡️ Lab 5: SecOps Automation - Developing Custom Analytics Rules for SSH Brute Force
 
 **Objective:** Automate the detection of credential access attempts by translating proactive KQL threat hunting queries into active SIEM Analytics Rules, generating high-fidelity SOC incidents.
 
@@ -184,3 +186,46 @@ The automated detection engine successfully intercepted the ingested telemetry a
 
 
 **Skills Applied:** Detection Engineering, SecOps Automation, Microsoft Defender XDR, Incident Generation, MITRE ATT&CK Mapping (T1110.001), Ingestion Latency Mitigation.
+
+<br>
+<br>
+
+# Lab6
+## 🛡️ Open-Source EDR Deployment & CIS Hardening - Proactive Vulnerability Management
+
+**Objective:** Architect and deploy an open-source XDR/EDR solution (Wazuh) across a hybrid environment (Linux/Windows), establish secure telemetry tunnels, and conduct a proactive vulnerability assessment aligned with CIS (Center for Internet Security) Benchmarks.
+
+**Scenario:** A critical requirement for modern SOC operations is continuous endpoint visibility. The organization requires a centralized EDR platform to monitor internal servers and workstations. Once deployed, the SOC analyst must identify misconfigurations and prioritize hardening efforts to reduce the attack surface before an incident occurs.
+
+### 1. The Engineer's Perspective (EDR Infrastructure Deployment)
+An "All-in-One" Wazuh architecture (Manager, Indexer, and Dashboard) was deployed on an Ubuntu server. To establish a secure communication channel, NAT port forwarding rules (Ports 1514, 1515, 443) were configured to allow external endpoints to reach the isolated SOC environment. Agents were successfully compiled, authenticated, and deployed across both Linux (`Ubuntu-SOC-Server`) and Windows (`Windows-Pielt`) endpoints.
+
+<br>
+
+<img width="1915" height="787" alt="image" src="https://github.com/user-attachments/assets/8aab087d-2040-41f4-81f5-3bf4df7f14d8" />
+
+<br>
+
+<img width="1916" height="1027" alt="image" src="https://github.com/user-attachments/assets/b786f7d4-035c-439e-ac2c-7fd56e264093" />
+
+*Caption: Wazuh Endpoints Summary dashboard confirming the successful cryptographic enrollment and active connection of the Windows endpoint via the established NAT tunnels.*
+
+### 2. The Analyst's Perspective (Vulnerability Management & Compliance)
+Operating from the Wazuh Dashboard, the SOC analyst initiated a Configuration Assessment scan against the newly enrolled Windows endpoint. The system evaluated the host against the strict `CIS Microsoft Windows 11 Enterprise Benchmark v1.0.0` to identify deviations from corporate security policies.
+
+<br>
+
+<img width="1913" height="1026" alt="image" src="https://github.com/user-attachments/assets/8bbb8231-9f5b-4aea-9431-6582eb49a68c" />
+
+*Caption: The Security Configuration Assessment (SCA) results, displaying the initial compliance score and the macroscopic view of passed versus failed security checks on the target endpoint.*
+
+### 3. Forensic Evidence (Hardening Gaps Identified)
+The initial scan resulted in a 29% compliance score, immediately highlighting critical security gaps. The telemetry pinpointed specific vulnerabilities, such as `Ensure password must meet complexity requirements is set to Enabled`, which was marked as 'Failed'. This provides the SOC with a prioritized, actionable remediation list to enforce system hardening and mitigate potential brute-force or lateral movement vectors.
+
+<br>
+
+<img width="1915" height="1032" alt="image" src="https://github.com/user-attachments/assets/4138debb-9832-486a-8047-bf538b0df93a" />
+
+*Caption: Granular log analysis revealing the specific registry key and policy misconfigurations (e.g., Password Complexity) that require immediate incident response and hardening.*
+
+**Skills Applied:** XDR/EDR Architecture (Wazuh), Endpoint Security, Vulnerability Analysis, CIS Benchmarks, System Hardening, Agent-Manager Cryptographic Enrollment.
