@@ -111,8 +111,11 @@ Deep diving into the filtered logs reveals the exact forensic timeline. The pres
 ### 1. The Engineer's Perspective (Agent Deployment & Authentication)
 The Azure Connected Machine agent (`azcmagent`) was deployed on the local Ubuntu Operations Server. To securely bind the on-premises machine to the Azure tenant without hardcoding credentials, a device code authentication flow was utilized. The terminal successfully retrieved the Managed Service Identity (MSI) certificate, cryptographically proving the machine's identity to the cloud control plane.
 
+<img width="1161" height="774" alt="image" src="https://github.com/user-attachments/assets/0048a69b-c86b-4f5f-be5a-fc611fa596dd" />
+<img width="1103" height="644" alt="Captura de tela 2026-05-27 150359" src="https://github.com/user-attachments/assets/fcec3b9d-eecb-4d62-b4e9-a23c6a85fb32" />
+<img width="1106" height="644" alt="Captura de tela 2026-05-27 150429" src="https://github.com/user-attachments/assets/caebe97d-2cab-48e9-b585-1d851424211b" />
+<img width="1099" height="636" alt="Captura de tela 2026-05-27 150502" src="https://github.com/user-attachments/assets/1ec1df42-dbae-408f-b26c-b1100ae55a53" />
 <img width="1109" height="644" alt="image" src="https://github.com/user-attachments/assets/e934e58a-8574-4d63-bfd4-d5dffe8a7321" />
-<br>
 <img width="727" height="549" alt="image" src="https://github.com/user-attachments/assets/d566f1c9-0946-4f7a-83dc-f25da6e5bb97" />
 
 
