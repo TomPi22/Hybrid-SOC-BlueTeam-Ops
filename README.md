@@ -218,6 +218,10 @@ Operating from the Wazuh Dashboard, the SOC analyst initiated a Configuration As
 
 <br>
 
+<img width="1158" height="769" alt="image" src="https://github.com/user-attachments/assets/78a61f94-2e18-405b-a190-735a6e29c967" />
+<img width="1103" height="644" alt="Captura de tela 2026-05-27 150359" src="https://github.com/user-attachments/assets/26202711-3fbe-40be-b9b3-81d82f182ba6" />
+<img width="1106" height="644" alt="Captura de tela 2026-05-27 150429" src="https://github.com/user-attachments/assets/99fd9ac3-e7af-4dd5-89ba-5b9081954474" />
+<img width="1099" height="636" alt="Captura de tela 2026-05-27 150502" src="https://github.com/user-attachments/assets/766c4bfc-1f33-43f0-9b2e-d3fb6fa660c6" />
 <img width="1913" height="1026" alt="image" src="https://github.com/user-attachments/assets/8bbb8231-9f5b-4aea-9431-6582eb49a68c" />
 
 *Caption: The Security Configuration Assessment (SCA) results, displaying the initial compliance score and the macroscopic view of passed versus failed security checks on the target endpoint.*
