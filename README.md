@@ -236,3 +236,42 @@ The initial scan resulted in a 29% compliance score, immediately highlighting cr
 *Caption: Granular log analysis revealing the specific registry key and policy misconfigurations (e.g., Password Complexity) that require immediate incident response and hardening.*
 
 **Skills Applied:** XDR/EDR Architecture (Wazuh), Endpoint Security, Vulnerability Analysis, CIS Benchmarks, System Hardening, Agent-Manager Cryptographic Enrollment.
+
+<br>
+<br>
+
+# Lab 7
+## 🛡️ Malware & Ransomware Defense - Configuring File Integrity Monitoring (FIM) & Threat Hunting
+
+**Objective:** Engineer a highly sensitive host-based intrusion detection mechanism using Wazuh's File Integrity Monitoring (FIM) to detect, log, and alert on ransomware behavior (creation, encryption/modification, and deletion of critical files) in real-time.
+
+**Scenario:** The SOC requires a proactive defense mechanism against ransomware and data exfiltration tactics. To minimize Mean Time to Detect (MTTD), a "digital tripwire" must be established within a highly sensitive Windows directory. Any unauthorized modification to files within this directory must immediately trigger a high-severity alert within the unified SecOps dashboard.
+
+### 1. The Engineer's Perspective (FIM Configuration & XML Injection)
+To transform the Windows endpoint into an active sensor, the Wazuh agent configuration file (`ossec.conf`) required surgical modification. Administrative privileges were utilized to inject a custom `<directories>` rule directly into the XML structure of the `syscheck` module. The rule was strictly configured with `check_all="yes"` to monitor metadata, checksums, and permissions, and `realtime="yes"` to bypass the default polling interval and trigger instantaneous alerts upon file manipulation within the targeted directory (`C:\Users\Public\Laboratorio_SOC`).
+
+<br>
+
+<img width="1913" height="1031" alt="image" src="https://github.com/user-attachments/assets/97cee650-f7eb-4ef0-9b15-d703031f853c" />
+
+<br>
+
+### 2. The Attacker's Perspective (Ransomware Kill Chain Simulation)
+To validate the SOC's detection capabilities, a simulated ransomware attack was executed locally against the monitored directory. The simulation followed a strict, cadenced kill chain:
+* **Payload Drop:** A sensitive file (`senhas_banco.txt`) was created within the tripwire directory.
+* **Encryption Phase:** The file's contents were heavily modified to simulate the rapid encryption behavior characteristic of ransomware payloads.
+* **Covering Tracks:** The original, unencrypted file was forcibly deleted from the system.
+
+### 3. The Analyst's Perspective (Incident Triage & IoC Extraction)
+Operating from the central Wazuh Dashboard on the Ubuntu server, the SOC analyst monitored the incoming telemetry. The attack triggered a cascade of high-fidelity alerts perfectly mapping the adversary's actions. 
+
+<br>
+
+<img width="1913" height="1030" alt="image" src="https://github.com/user-attachments/assets/06c5022c-9acd-43ea-8115-a8883d7e9831" />
+
+<br>
+
+### 4. Forensic Evidence (Checksum Validation)
+The critical success of this detection relies on the `syscheck` engine calculating cryptographic hashes (MD5, SHA1, SHA256) of the files in real-time. The `modified` alert (Rule 550) mathematically proved that the file's internal integrity was altered, which is the definitive Indicator of Compromise (IoC) for an active ransomware infection. This allows the SOC to isolate the endpoint from the network before lateral movement can occur.
+
+**Skills Applied:** Endpoint Detection and Response (EDR), File Integrity Monitoring (FIM), Ransomware Kill Chain Analysis, XML Configuration Management, Real-time Threat Triage, Indicators of Compromise (IoC) Extraction.
