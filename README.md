@@ -252,6 +252,8 @@ To transform the Windows endpoint into an active sensor, the Wazuh agent configu
 
 <br>
 
+<img width="1090" height="573" alt="image" src="https://github.com/user-attachments/assets/0d0bcab2-7895-4a1b-93b0-2b831d10bd5e" />
+
 <img width="1913" height="1034" alt="image" src="https://github.com/user-attachments/assets/091e04be-83ed-4f83-bd2a-adb00260628d" />
 
 <br>
