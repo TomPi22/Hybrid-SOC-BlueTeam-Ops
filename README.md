@@ -252,7 +252,7 @@ To transform the Windows endpoint into an active sensor, the Wazuh agent configu
 
 <br>
 
-<img width="1913" height="1031" alt="image" src="https://github.com/user-attachments/assets/97cee650-f7eb-4ef0-9b15-d703031f853c" />
+<img width="1913" height="1034" alt="image" src="https://github.com/user-attachments/assets/091e04be-83ed-4f83-bd2a-adb00260628d" />
 
 <br>
 
@@ -267,7 +267,7 @@ Operating from the central Wazuh Dashboard on the Ubuntu server, the SOC analyst
 
 <br>
 
-<img width="1913" height="1030" alt="image" src="https://github.com/user-attachments/assets/06c5022c-9acd-43ea-8115-a8883d7e9831" />
+<img width="1915" height="1027" alt="image" src="https://github.com/user-attachments/assets/78f3ea77-f0d9-434b-82a7-20bae11f5971" />
 
 <br>
 
