@@ -240,7 +240,7 @@ The initial scan resulted in a 29% compliance score, immediately highlighting cr
 <br>
 <br>
 
-# Lab 7
+# Lab7
 ## 🛡️ Malware & Ransomware Defense - Configuring File Integrity Monitoring (FIM) & Threat Hunting
 
 **Objective:** Engineer a highly sensitive host-based intrusion detection mechanism using Wazuh's File Integrity Monitoring (FIM) to detect, log, and alert on ransomware behavior (creation, encryption/modification, and deletion of critical files) in real-time.
