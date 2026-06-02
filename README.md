@@ -329,11 +329,8 @@ The automation performed flawlessly. The Wazuh decoding engine identified the SQ
 
 <br>
 
-<img width="1915" height="1010" alt="image" src="https://github.com/user-attachments/assets/9d6b1060-0fad-4f24-b950-f94accacb688" />
+<img width="1916" height="1031" alt="image" src="https://github.com/user-attachments/assets/8f55fb98-2a5a-4b63-8fce-396dd63817c9" />
 
-<br>
-
-<img width="1914" height="1027" alt="image" src="https://github.com/user-attachments/assets/2d4d6ad0-4658-45d9-a189-07a69e6300fd" />
 
 > *Caption: Security Events dashboard displaying the correlation timeline: The initial SQL Injection alert, immediately followed by the Active Response system log confirming the successful execution of the firewall-drop script against the offending IP address.*
 
