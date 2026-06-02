@@ -281,7 +281,7 @@ The critical success of this detection relies on the `syscheck` engine calculati
 <br>
 <br>
 
-# Lab 8
+# Lab8
 ## 🛡️ Detecting Web Exploitation & SQL Injection via Wazuh and SIEM Correlation
 
 **Objective:** Expose a local Apache web server and utilize Wazuh to ingest, parse, and correlate access logs in real-time to detect common web application vulnerabilities (OWASP Top 10), specifically SQL Injection (SQLi), Cross-Site Scripting (XSS), and Path Traversal (LFI).
