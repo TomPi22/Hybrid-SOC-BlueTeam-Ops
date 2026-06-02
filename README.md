@@ -323,7 +323,7 @@ The primary Wazuh Manager configuration file (`ossec.conf`) was modified to intr
 A targeted SQL Injection payload (`/?id=1'+OR+'1'='1`) was fired against the monitored Apache web server. The objective was to test the speed and efficacy of the automated defense mechanism.
 
 ### 3. The Analyst's Perspective (Zero-Touch Mitigation)
-The automation performed flawlessly. The Wazuh decoding engine identified the SQLi payload in the Apache access logs, triggered Rule 31103, and instantly orchestrated the Active Response script. 
+The automation performed flawlessly. The Wazuh decoding engine identified the SQLi payload in the Apache access logs, triggered Rule 31164, and instantly orchestrated the Active Response script. 
 
 <img width="1106" height="727" alt="image" src="https://github.com/user-attachments/assets/4e7d25aa-246b-4d09-b09e-62f41d1bcbcf" />
 
