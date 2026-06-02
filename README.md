@@ -277,3 +277,31 @@ Operating from the central Wazuh Dashboard on the Ubuntu server, the SOC analyst
 The critical success of this detection relies on the `syscheck` engine calculating cryptographic hashes (MD5, SHA1, SHA256) of the files in real-time. The `modified` alert (Rule 550) mathematically proved that the file's internal integrity was altered, which is the definitive Indicator of Compromise (IoC) for an active ransomware infection. This allows the SOC to isolate the endpoint from the network before lateral movement can occur.
 
 **Skills Applied:** Endpoint Detection and Response (EDR), File Integrity Monitoring (FIM), Ransomware Kill Chain Analysis, XML Configuration Management, Real-time Threat Triage, Indicators of Compromise (IoC) Extraction.
+
+<br>
+<br>
+
+# Lab 8
+## 🛡️ Detecting Web Exploitation & SQL Injection via Wazuh and SIEM Correlation
+
+**Objective:** Expose a local Apache web server and utilize Wazuh to ingest, parse, and correlate access logs in real-time to detect common web application vulnerabilities (OWASP Top 10), specifically SQL Injection (SQLi), Cross-Site Scripting (XSS), and Path Traversal (LFI).
+
+**Scenario:** The organization hosts several public-facing web applications. The SOC requires continuous monitoring of web server access logs to identify active reconnaissance and exploitation attempts. The objective is to validate that the EDR/SIEM platform can accurately identify malicious payloads embedded in HTTP requests and escalate them as high-priority incidents.
+
+### 1. The Attacker's Perspective (OWASP Top 10 Exploitation)
+To validate the SOC's detection engine, a series of targeted web attacks were simulated against the local Apache server (`http://localhost`) using command-line HTTP clients. The attack vectors included:
+* **SQL Injection (SQLi):** Attempting to manipulate backend database queries via malicious URL parameters (`/?id=1'+OR+'1'='1`).
+* **Path Traversal (LFI):** Attempting to escape the web root directory and read sensitive system files (`/?file=../../../../etc/passwd`).
+* **Cross-Site Scripting (XSS):** Injecting malicious JavaScript payloads into search parameters (`/?search=<script>alert('Hackeado')</script>`).
+
+### 2. The Analyst's Perspective (Web Threat Triage)
+By default, the Wazuh Manager was configured to ingest the Apache `access.log`. Operating from the Threat Intelligence dashboard, the SOC analyst monitored the real-time log ingestion. The Wazuh decoding engine successfully parsed the raw HTTP requests, correlated the malicious character strings against its threat signature database, and triggered multiple high-severity alerts.
+
+<img width="1915" height="890" alt="image" src="https://github.com/user-attachments/assets/c69b2563-6d0b-4332-9ed1-51080a007a41" />
+
+> *Caption: The Wazuh Security Events dashboard displaying the intercepted attack vectors, explicitly categorizing the threats as "SQL injection attempt", "Multiple URI path traversal", and "Cross Site Scripting (XSS)".*
+
+### 3. Forensic Evidence & Mitigation
+Granular log analysis revealed the attacker's methodology, capturing the exact payload, the targeted URI path, and the HTTP response codes. This visibility allows the SOC to extract the offending IP address and implement immediate containment measures, such as updating Web Application Firewall (WAF) rules or isolating the web server.
+
+**Skills Applied:** Web Exploitation Detection, Apache Log Analysis, OWASP Top 10 (SQLi, XSS, LFI), Wazuh Rule Decoding, Threat Intelligence Correlation, SOC Incident Triage.
