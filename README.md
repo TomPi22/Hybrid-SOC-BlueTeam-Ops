@@ -305,3 +305,39 @@ By default, the Wazuh Manager was configured to ingest the Apache `access.log`. 
 Granular log analysis revealed the attacker's methodology, capturing the exact payload, the targeted URI path, and the HTTP response codes. This visibility allows the SOC to extract the offending IP address and implement immediate containment measures, such as updating Web Application Firewall (WAF) rules or isolating the web server.
 
 **Skills Applied:** Web Exploitation Detection, Apache Log Analysis, OWASP Top 10 (SQLi, XSS, LFI), Wazuh Rule Decoding, Threat Intelligence Correlation, SOC Incident Triage.
+
+<br>
+<br>
+
+# Lab9
+## 🛡️ Active Response & Containment - Automating Endpoint Isolation via Custom Scripts
+
+**Objective:** Engineer a SOAR (Security Orchestration, Automation, and Response) workflow utilizing Wazuh's Active Response module to automatically execute a firewall mitigation script (`firewall-drop`) upon detecting high-confidence Web Exploitation attempts, neutralizing the threat actor in real-time.
+
+**Scenario:** Mean Time to Respond (MTTR) is a critical KPI for SOC operations. Relying solely on manual analyst intervention during an active cyberattack allows adversaries critical seconds to establish persistence. The SOC requires an automated containment playbook that immediately isolates an offending IP address at the network level when specific, high-fidelity alerts (such as SQL Injection) are triggered.
+
+### 1. The Engineer's Perspective (SOAR Blueprinting)
+The primary Wazuh Manager configuration file (`ossec.conf`) was modified to introduce a new automated defense paradigm. An `<active-response>` block was engineered to map specific detection logic (Rule ID: `31103` - SQL Injection attempt) directly to a mitigation action. The `firewall-drop` script was configured to execute locally, interacting directly with the Linux host's `iptables/ufw` to drop all inbound traffic from the threat actor's IP address. A failsafe `<timeout>` of 60 seconds was implemented to automatically remove the block, preventing permanent denial-of-service in the event of a false positive.
+
+### 2. The Attacker's Perspective (Triggering the Playbook)
+A targeted SQL Injection payload (`/?id=1'+OR+'1'='1`) was fired against the monitored Apache web server. The objective was to test the speed and efficacy of the automated defense mechanism.
+
+### 3. The Analyst's Perspective (Zero-Touch Mitigation)
+The automation performed flawlessly. The Wazuh decoding engine identified the SQLi payload in the Apache access logs, triggered Rule 31103, and instantly orchestrated the Active Response script. 
+
+<img width="1106" height="727" alt="image" src="https://github.com/user-attachments/assets/4e7d25aa-246b-4d09-b09e-62f41d1bcbcf" />
+
+<br>
+
+<img width="1915" height="1010" alt="image" src="https://github.com/user-attachments/assets/9d6b1060-0fad-4f24-b950-f94accacb688" />
+
+<br>
+
+<img width="1914" height="1027" alt="image" src="https://github.com/user-attachments/assets/2d4d6ad0-4658-45d9-a189-07a69e6300fd" />
+
+> *Caption: Security Events dashboard displaying the correlation timeline: The initial SQL Injection alert, immediately followed by the Active Response system log confirming the successful execution of the firewall-drop script against the offending IP address.*
+
+### 4. Forensic Evidence (Containment Validation)
+To validate the containment, subsequent HTTP requests to the web server from the attacker's IP address timed out. The network connection was completely severed at the transport layer, proving that the SOC infrastructure successfully neutralized the threat without any manual human intervention.
+
+**Skills Applied:** SOAR (Security Orchestration, Automation, and Response), Active Response Configuration, Automated Containment, Mean Time to Respond (MTTR) Optimization, Linux Firewall Automation (iptables).
