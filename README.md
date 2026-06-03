@@ -338,3 +338,33 @@ The automation performed flawlessly. The Wazuh decoding engine identified the SQ
 To validate the containment, subsequent HTTP requests to the web server from the attacker's IP address timed out. The network connection was completely severed at the transport layer, proving that the SOC infrastructure successfully neutralized the threat without any manual human intervention.
 
 **Skills Applied:** SOAR (Security Orchestration, Automation, and Response), Active Response Configuration, Automated Containment, Mean Time to Respond (MTTR) Optimization, Linux Firewall Automation (iptables).
+
+<br>
+<br>
+
+# Lab10
+## 📊 SOC Governance - Tuning Dashboards, KPIs, and Executive Incident Reporting
+
+**Objective:** Translate raw technical telemetry into actionable business intelligence by designing custom SOC dashboards and generating executive-level security reports, fulfilling compliance and stakeholder visibility requirements.
+
+**Scenario:** The CISO and executive board require a daily briefing on the organization's threat landscape. The SOC Analyst must aggregate data from endpoint agents, vulnerability scanners, and web application firewalls to present clear Key Performance Indicators (KPIs), such as the volume of high-severity alerts, top targeted assets, and Mean Time to Respond (MTTR) metrics validated by automated containment actions.
+
+### 1. Security Event Aggregation & Visualization
+Leveraging the Wazuh / Elastic stack (Opensearch Dashboards), custom visualizations were utilized to track security events over a 24-hour operational window. The dashboard dynamically categorized threats based on the MITRE ATT&CK framework, filtering out operational noise (Level 3 alerts) to highlight critical indicators of compromise, such as the previously contained SQL Injection and Path Traversal attempts.
+
+### 2. Executive Incident Reporting
+To bridge the gap between technical operations and executive governance, a comprehensive PDF operational report was generated directly from the SIEM platform. This report provides an immutable snapshot of the threat landscape, detailing:
+* **Alert Severity Distribution:** A breakdown of Critical, High, and Medium severity events.
+* **Top MITRE Tactics:** Highlighting predominant adversary behaviors (e.g., Initial Access, Execution).
+* **Automated Mitigations:** Documenting the successful execution of Active Response scripts, demonstrating ROI on SOAR capabilities.
+
+<img width="1902" height="917" alt="image" src="https://github.com/user-attachments/assets/442e5b95-d055-48eb-9b03-9845356833b1" />
+<img width="1899" height="926" alt="image" src="https://github.com/user-attachments/assets/548f8e0b-c5b6-419f-ba8a-c5325083eb21" />
+<img width="1907" height="980" alt="image" src="https://github.com/user-attachments/assets/45cb744a-e69e-4e52-b509-c6aae760ed8f" />
+
+> *Caption: An excerpt from the automated executive report detailing the security event distribution and specific, high-level alerts neutralized during the operational period.*
+
+### 3. Continuous Tuning
+Based on the report findings, the SOC implements a continuous feedback loop. Rules generating false positives are tuned, and high-fidelity rules are mapped to new automated playbooks, ensuring the security posture hardens over time.
+
+**Skills Applied:** SOC Governance, KPI Tracking, Executive Reporting, SIEM Dashboard Tuning, Threat Intelligence Visualization, Business Alignment.
