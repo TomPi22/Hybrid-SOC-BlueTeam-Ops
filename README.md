@@ -350,7 +350,7 @@ To validate the containment, subsequent HTTP requests to the web server from the
 **Scenario:** The CISO and executive board require a daily briefing on the organization's threat landscape. The SOC Analyst must aggregate data from endpoint agents, vulnerability scanners, and web application firewalls to present clear Key Performance Indicators (KPIs), such as the volume of high-severity alerts, top targeted assets, and Mean Time to Respond (MTTR) metrics validated by automated containment actions.
 
 ### 1. Security Event Aggregation & Visualization
-Leveraging the Wazuh / Elastic stack (Opensearch Dashboards), custom visualizations were utilized to track security events over a 24-hour operational window. The dashboard dynamically categorized threats based on the MITRE ATT&CK framework, filtering out operational noise (Level 3 alerts) to highlight critical indicators of compromise, such as the previously contained SQL Injection and Path Traversal attempts.
+Leveraging the Wazuh / Elastic stack (Opensearch Dashboards), custom visualizations were utilized to track security events over a 24-hour operational window. The dashboard dynamically categorized threats based on the MITRE ATT&CK framework, filtering out operational noise (Level 3 alerts - and others) to highlight critical indicators of compromise, such as the previously contained SQL Injection and Path Traversal attempts.
 
 ### 2. Executive Incident Reporting
 To bridge the gap between technical operations and executive governance, a comprehensive PDF operational report was generated directly from the SIEM platform. This report provides an immutable snapshot of the threat landscape, detailing:
